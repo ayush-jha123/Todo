@@ -51,11 +51,8 @@ The app will be available at `http://localhost:3000` in your browser.
 
 ## Live Version
 
-You can view the live version of the app [here](https://your-live-link.com).
+You can view the live version of the app [here](https://todoayush123.netlify.app/).
 
-## Screenshots
-
-![TODO App](./assets/todo-app-screenshot.png)
 
 ## Conclusion
 
@@ -71,4 +68,3 @@ Feel free to clone and modify it to suit your needs.
 
 GitHub: [https://github.com/ayush-jha123](https://github.com/ayush-jha123)
 
-Email: [your-email@example.com](mailto:your-email@example.com)
