@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import bgvedio from "../assets/bgvedio.mp4";
 import { FaPlus } from "react-icons/fa";
+import { MdDelete } from "react-icons/md";
+import { MdEdit } from "react-icons/md";
 
 const Home = () => {
   const [tasks, setTasks] = useState([]);
@@ -30,7 +32,7 @@ const Home = () => {
         }),
       });
       const addedTask = await response.json();
-      setTasks([...tasks, { ...addedTask, id: tasks.length + 1 }]); // Append task with mock ID
+      setTasks([{ ...addedTask, id: tasks.length + 1 }, ...tasks]); // Prepend the new task
       setNewTask(""); // Clear input
     } catch (error) {
       console.error("Error adding task:", error);
@@ -85,11 +87,11 @@ const Home = () => {
         loop
       />
       <div className="w-full h-screen flex justify-center items-center">
-        <div className="w-[90%] h-[95%] bg-[rgba(0,0,0,0.6)] border-gray-600 border-2 border-solid rounded-md shadow-md">
-          <h1 className="p-3 font-mono text-[5rem] text-gray-200">TODO APP</h1>
+        <div className="w-[90%] h-[95%] bg-[rgba(0,0,0,0.6)] border-gray-600 border-2 border-solid rounded-md shadow-md max-sm:w-[95%]">
+          <h1 className="p-3 font-mono text-[5rem] text-gray-200 max-sm:text-[2.5rem]">TODO APP</h1>
           <div className="flex flex-col w-full items-center gap-5">
             <div className="flex justify-center w-full">
-              <div className="w-2/3 flex flex-row gap-2">
+              <div className="w-2/3 flex flex-row gap-2 max-sm:w-[90%]">
                 <input
                   type="text"
                   name="title"
@@ -105,7 +107,7 @@ const Home = () => {
                 />
               </div>
             </div>
-            <div className="p-4 ring-1 ring-white m-3 rounded-md w-2/3">
+            <div className="p-4 ring-1 ring-white m-3 rounded-md w-2/3 max-sm:w-[90%]">
               <p className="text-lg text-white text-[3rem] font-mono">Tasks ({tasks.length})</p>
               <div className="w-full m-2 p-2 flex flex-col space-y-2 rounded-md h-[24rem] overflow-y-scroll">
                 {tasks.map((task) => (
@@ -119,18 +121,24 @@ const Home = () => {
                     <div className="flex items-center gap-2">
                       <button
                         type="button"
-                        className="bg-slate-100 ring-2 p-3 rounded-lg hover:bg-red-600 hover:text-white w-[6rem]"
+                        className="bg-slate-100 ring-2 p-3 rounded-lg hover:bg-red-600 hover:text-white w-[6rem] max-sm:hidden"
                         onClick={() => handleDeleteTask(task.id)}
                       >
                         Delete
                       </button>
+                      <button>
+                        <MdDelete className="bg-white text-black shadow-sm ring-1 hover:bg-red-600 hover:text-white cursor-pointer w-[3rem]  size-12 p-2 rounded-md  max-sm:block hidden"/>
+                      </button>
                       <button
                         type="button"
-                        className="bg-slate-100 ring-2 p-3 rounded-lg hover:bg-green-600 hover:text-white w-[6rem]"
+                        className="bg-slate-100 ring-2 p-3 rounded-lg hover:bg-green-600 hover:text-white w-[6rem] max-sm:hidden"
                         onClick={() => handleEditTask(task.id)}
                       >
                         Edit
                       </button>
+                      {/* <button>
+                        <MdEdit className="bg-blue-700 hover:bg-blue-900 cursor-pointer w-[5rem] text-white size-12 p-2 rounded-md  max-sm:visible"/>
+                      </button> */}
                     </div>
                   </div>
                 ))}
